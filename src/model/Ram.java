@@ -129,6 +129,7 @@ public class Ram {
 				mask = Utile.be2mask(be);
 				old_val = m_ram.get(i)[index];
 				new_val = wdata;
+				System.out.println("index : "+index);
 				m_ram.get(i)[index] = (old_val & ~mask) | (new_val & mask);
 				return true;
 			}

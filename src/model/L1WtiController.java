@@ -249,7 +249,11 @@ public class L1WtiController implements L1Controller {
 				getResponse();
 				if(m_rsp.getCmd() == cmd_t.RSP_READ_LINE){
 					m_cache_l1.set_line(m_iss_req.getAddress(), m_rsp.getData(), false);
-					sendIssResponse(m_iss_req.getAddress(), cmd_t.RSP_READ_WORD, m_rsp.getData().get(0));
+					LineState req_state = new LineState();
+					List<Long> returned_dt = new ArrayList<Long>();
+					
+					m_cache_l1.read(m_iss_req.getAddress(), returned_dt, req_state);
+					sendIssResponse(m_iss_req.getAddress(), cmd_t.RSP_READ_WORD,returned_dt.get(0));
 					System.out.println("DATA RECUE : "+m_rsp.getData());
 					r_fsm_state = FsmState.FSM_IDLE;
 				}

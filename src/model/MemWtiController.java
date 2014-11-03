@@ -114,7 +114,7 @@ public class MemWtiController implements MemController {
 					///!\ mettre a jour la liste des copies
 					m_ram.addCopy(m_req.getAddress(), m_req.getSrcid());
 					List<Long> rdata = new ArrayList<Long>();
-					m_ram.getLine(m_req.getAddress(), rdata);
+					m_ram.getLine(align(m_req.getAddress()), rdata);
 					sendResponse(m_req.getAddress(), m_req.getSrcid(), cmd_t.RSP_READ_LINE, rdata);
 				}
 			}
@@ -148,12 +148,11 @@ public class MemWtiController implements MemController {
 					m_ram.removeCopy(m_rsp.getAddress(), m_rsp.getSrcid());
 				}	
 			}
+			break;
 			
 				
 		case FSM_INVWR:
-			m_ram.write(m_req.getAddress(), m_req.getData().get(0), m_req.getBe());
-			/*List<Long> rdata = new ArrayList<Long>();
-			m_ram.read(m_req.getAddress(), rdata);*/
+			m_ram.write(m_req.getAddress(), m_req.getData().get(0),0XF);
 
 			r_fsm_state = FsmState.FSM_IDLE;
 			break;

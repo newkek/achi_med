@@ -219,11 +219,16 @@ public class L1WtiController implements L1Controller {
 						r_fsm_state = FsmState.FSM_IDLE;
 					}
 				}
-				else if(m_iss_req.getCmd() == cmd_t.INVAL){
-					//Invalider la ligne de cache
-					m_cache_l1.inval(m_req.getAddress(), true);
-					sendResponse(m_req.getAddress(), m_req.getSrcid(), cmd_t.RSP_INVAL_CLEAN, null);
-					r_fsm_state = FsmState.FSM_IDLE;
+			}	
+			else{
+				if(!p_in_req.empty(this)){
+					getRequest();
+					if(m_req.getCmd() == cmd_t.INVAL){
+						//Invalider la ligne de cache
+						m_cache_l1.inval(m_req.getAddress(), true);
+						sendResponse(m_req.getAddress(), m_req.getSrcid(), cmd_t.RSP_INVAL_CLEAN, null);
+						r_fsm_state = FsmState.FSM_IDLE;
+					}
 				}
 			}
 			break;

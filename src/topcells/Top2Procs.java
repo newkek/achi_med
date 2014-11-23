@@ -105,8 +105,9 @@ public class Top2Procs implements Topcell {
 		moduleList.add(processors.get(1));
 
 		// Load requests (example)
-		/*processors.get(0).add_read (0x00400000);
-		processors.get(0).add_read (0x00400000);*/
+		processors.get(0).add_write(4, 11);
+		processors.get(0).add_read (4);
+		/*processors.get(0).add_read (0x00400000);*/
 		/*processors.get(0).add_write(0x00400000, 11);
 		processors.get(0).add_read (0x00400008);
 		processors.get(0).add_read (0x00400000);
@@ -117,11 +118,12 @@ public class Top2Procs implements Topcell {
 		processors.get(0).add_read (0x00400010);
 		processors.get(0).add_write(0x00400018, 14);
 		processors.get(0).add_read (0x00400018);
+		*/
 		
-		
-		processors.get(1).add_write(0x00400004, 1);
-		processors.get(1).add_read (0x00400004);
-		processors.get(1).add_write(0x0040000C, 2);
+		/*processors.get(1).add_write(0x00400004, 1);*/
+		processors.get(1).add_read (4);
+		processors.get(1).add_write(4, 1);
+		/*processors.get(1).add_write(0x0040000C, 2);
 		processors.get(1).add_read (0x0040000C);
 		processors.get(1).add_write(0x00400014, 3);
 		processors.get(1).add_read (0x00400014);
